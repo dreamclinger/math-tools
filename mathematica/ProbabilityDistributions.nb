@@ -1,0 +1,1226 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     48656,       1217]
+NotebookOptionsPosition[     44183,       1071]
+NotebookOutlinePosition[     45948,       1129]
+CellTagsIndexPosition[     45620,       1117]
+WindowFrame->Normal
+ContainsDynamic->True *)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Percentiles of Certain Probability Distributions", "DemoTitle",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.401705398276*^9, 3.401705407385*^9}, 
+   3.4017196989622283`*^9}],
+
+Cell[CellGroupData[{
+
+Cell["", "InitializationSection"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"minx", "[", "distribution_", "]"}], ":=", 
+   RowBox[{"Switch", "[", 
+    RowBox[{"distribution", ",", " ", 
+     RowBox[{"NormalDistribution", "[", 
+      RowBox[{"0", ",", "1"}], "]"}], ",", 
+     RowBox[{"-", "3"}], ",", 
+     RowBox[{"StudentTDistribution", "[", "20", "]"}], ",", 
+     RowBox[{"-", "3"}], ",", " ", 
+     RowBox[{"ChiSquareDistribution", "[", "6", "]"}], ",", "0", ",", 
+     RowBox[{"FRatioDistribution", "[", 
+      RowBox[{"4", ",", "10"}], "]"}], ",", "0"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"maxx", "[", "distribution_", "]"}], ":=", 
+   RowBox[{"Switch", "[", 
+    RowBox[{"distribution", ",", " ", 
+     RowBox[{"NormalDistribution", "[", 
+      RowBox[{"0", ",", "1"}], "]"}], ",", "3", ",", 
+     RowBox[{"StudentTDistribution", "[", "20", "]"}], ",", "3", ",", " ", 
+     RowBox[{"ChiSquareDistribution", "[", "6", "]"}], ",", "17", ",", 
+     RowBox[{"FRatioDistribution", "[", 
+      RowBox[{"4", ",", "10"}], "]"}], ",", "6"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{3.35696210375764*^9, 3.401705441078*^9},
+ CellID->163401273]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateSection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"PDF", "[", 
+         RowBox[{"distribution", ",", "x"}], "]"}], "*", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"x", "\[LessEqual]", 
+           RowBox[{"Quantile", "[", 
+            RowBox[{"distribution", ",", "p"}], "]"}]}], ",", "1", ",", "0"}],
+          "]"}]}], ",", " ", 
+       RowBox[{"PDF", "[", 
+        RowBox[{"distribution", ",", "x"}], "]"}], ",", " ", 
+       RowBox[{"CDF", "[", 
+        RowBox[{"distribution", ",", "x"}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{"minx", "[", "distribution", "]"}], ",", 
+       RowBox[{"maxx", "[", "distribution", "]"}]}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Epilog", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"Thin", ",", "Red", ",", " ", "Dashed", ",", " ", 
+          RowBox[{"Line", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"Quantile", "[", 
+                RowBox[{"distribution", ",", "p"}], "]"}], ",", "0"}], "}"}], 
+             ",", " ", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"Quantile", "[", 
+                RowBox[{"distribution", ",", "p"}], "]"}], ",", 
+               RowBox[{"CDF", "[", 
+                RowBox[{"distribution", ",", 
+                 RowBox[{"Quantile", "[", 
+                  RowBox[{"distribution", ",", "p"}], "]"}]}], "]"}]}], 
+              "}"}]}], "}"}], "]"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"Thin", ",", " ", "Red", ",", "Dashed", ",", 
+          RowBox[{"Line", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"0", ",", "p"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"Quantile", "[", 
+                RowBox[{"distribution", ",", "p"}], "]"}], ",", 
+               RowBox[{"CDF", "[", 
+                RowBox[{"distribution", ",", 
+                 RowBox[{"Quantile", "[", 
+                  RowBox[{"distribution", ",", "p"}], "]"}]}], "]"}]}], 
+              "}"}]}], "}"}], "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+        "Thick", ",", " ", "Black", ",", 
+        RowBox[{"Opacity", "[", "1", "]"}], ",", 
+        RowBox[{"Line", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Quantile", "[", 
+              RowBox[{"distribution", ",", "p"}], "]"}], ",", "0"}], "}"}], 
+           ",", " ", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Quantile", "[", 
+              RowBox[{"distribution", ",", "p"}], "]"}], ",", " ", 
+             RowBox[{"PDF", "[", 
+              RowBox[{"distribution", ",", " ", 
+               RowBox[{"Quantile", "[", 
+                RowBox[{"distribution", ",", "p"}], "]"}]}], "]"}]}], "}"}]}],
+           "}"}], "]"}]}], "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Filling", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"1", "\[Rule]", "Axis"}], "}"}]}], ",", "\[IndentingNewLine]", 
+     
+     RowBox[{"ImageSize", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"500", ",", "375"}], "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"PlotLabel", "\[Rule]", 
+      RowBox[{"Row", "[", 
+       RowBox[{"{", 
+        RowBox[{"\"\<The \>\"", ",", " ", 
+         RowBox[{"Superscript", "[", 
+          RowBox[{
+           RowBox[{"NumberForm", "[", 
+            RowBox[{
+             RowBox[{"100", "*", "p"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"3", ",", "1"}], "}"}]}], "]"}], ",", "\"\<th\>\""}], 
+          "]"}], ",", "\"\< percentile is \>\"", ",", " ", 
+         RowBox[{"NumberForm", "[", 
+          RowBox[{
+           RowBox[{"Quantile", "[", 
+            RowBox[{"distribution", ",", "p"}], "]"}], ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"4", ",", "3"}], "}"}]}], "]"}]}], "}"}], "]"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Black", ",", "Black", ",", " ", "Purple"}], "}"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", ".2"}], ",", "1"}], "}"}]}]}], "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"distribution", ",", 
+       RowBox[{"NormalDistribution", "[", 
+        RowBox[{"0", ",", "1"}], "]"}], ",", "\"\<distribution\>\""}], "}"}], 
+     ",", " ", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"NormalDistribution", "[", 
+         RowBox[{"0", ",", "1"}], "]"}], "\[Rule]", 
+        RowBox[{"TraditionalForm", "[", "\"\<N(0,1)\>\"", "]"}]}], ",", " ", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"ChiSquareDistribution", "[", "6", "]"}], "\[Rule]", 
+        RowBox[{
+        "TraditionalForm", "[", 
+         "\"\<\!\(\*SuperscriptBox[\(\[Chi]\), \(2\)]\)(4)\>\"", "]"}]}], ",",
+        " ", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"StudentTDistribution", "[", "20", "]"}], "\[Rule]", 
+        RowBox[{"TraditionalForm", "[", "\"\<T(20)\>\"", "]"}]}], ",", " ", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"FRatioDistribution", "[", 
+         RowBox[{"4", ",", "10"}], "]"}], "\[Rule]", 
+        RowBox[{"TraditionalForm", "[", "\"\<F(4,10)\>\"", "]"}]}]}], "}"}]}],
+     "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"p", ",", ".6", ",", "\"\<percentile\>\""}], "}"}], ",", " ", 
+     ".01", ",", ".99", ",", ".01", ",", " ", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.35696210375764*^9, 3.401705453734*^9, {3.401705864828*^9, 
+   3.401705873291*^9}, {3.4017178770947065`*^9, 3.4017179812197065`*^9}, {
+   3.401719768173447*^9, 3.401719769017105*^9}, {3.40214306296875*^9, 
+   3.402143063484375*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`distribution$$ = NormalDistribution[
+    0, 1], $CellContext`p$$ = 0.6, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`distribution$$], 
+       NormalDistribution[0, 1], "distribution"}, {
+      NormalDistribution[0, 1] -> TraditionalForm["N(0,1)"], 
+       ChiSquareDistribution[6] -> 
+       TraditionalForm["\!\(\*SuperscriptBox[\(\[Chi]\), \(2\)]\)(4)"], 
+       StudentTDistribution[20] -> TraditionalForm["T(20)"], 
+       FRatioDistribution[4, 10] -> TraditionalForm["F(4,10)"]}}, {{
+       Hold[$CellContext`p$$], 0.6, "percentile"}, 0.01, 0.99, 0.01}}, 
+    Typeset`size$$ = {500., {185., 190.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`distribution$32065$$ = False, $CellContext`p$32066$$ =
+     0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`distribution$$ = 
+        NormalDistribution[0, 1], $CellContext`p$$ = 0.6}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`distribution$$, $CellContext`distribution$32065$$, 
+         False], 
+        Hold[$CellContext`p$$, $CellContext`p$32066$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Plot[{PDF[$CellContext`distribution$$, $CellContext`x] 
+         If[$CellContext`x <= 
+           Quantile[$CellContext`distribution$$, $CellContext`p$$], 1, 0], 
+         PDF[$CellContext`distribution$$, $CellContext`x], 
+         CDF[$CellContext`distribution$$, $CellContext`x]}, {$CellContext`x, 
+         $CellContext`minx[$CellContext`distribution$$], 
+         $CellContext`maxx[$CellContext`distribution$$]}, 
+        Epilog -> {{Thin, Red, Dashed, 
+           Line[{{
+              Quantile[$CellContext`distribution$$, $CellContext`p$$], 0}, {
+              Quantile[$CellContext`distribution$$, $CellContext`p$$], 
+              CDF[$CellContext`distribution$$, 
+               Quantile[$CellContext`distribution$$, $CellContext`p$$]]}}]}, {
+          Thin, Red, Dashed, 
+           Line[{{0, $CellContext`p$$}, {
+              Quantile[$CellContext`distribution$$, $CellContext`p$$], 
+              CDF[$CellContext`distribution$$, 
+               Quantile[$CellContext`distribution$$, $CellContext`p$$]]}}]}, 
+          Thick, Black, 
+          Opacity[1], 
+          Line[{{
+             Quantile[$CellContext`distribution$$, $CellContext`p$$], 0}, {
+             Quantile[$CellContext`distribution$$, $CellContext`p$$], 
+             PDF[$CellContext`distribution$$, 
+              Quantile[$CellContext`distribution$$, $CellContext`p$$]]}}]}, 
+        Filling -> {1 -> Axis}, ImageSize -> {500, 375}, PlotLabel -> 
+        Row[{"The ", 
+           Superscript[
+            NumberForm[100 $CellContext`p$$, {3, 1}], "th"], 
+           " percentile is ", 
+           NumberForm[
+            Quantile[$CellContext`distribution$$, $CellContext`p$$], {4, 
+            3}]}], PlotStyle -> {Black, Black, Purple}, 
+        PlotRange -> {-0.2, 1}], 
+      "Specifications" :> {{{$CellContext`distribution$$, 
+          NormalDistribution[0, 1], "distribution"}, {
+         NormalDistribution[0, 1] -> TraditionalForm["N(0,1)"], 
+          ChiSquareDistribution[6] -> 
+          TraditionalForm["\!\(\*SuperscriptBox[\(\[Chi]\), \(2\)]\)(4)"], 
+          StudentTDistribution[20] -> TraditionalForm["T(20)"], 
+          FRatioDistribution[4, 10] -> 
+          TraditionalForm["F(4,10)"]}}, {{$CellContext`p$$, 0.6, 
+          "percentile"}, 0.01, 0.99, 0.01, Appearance -> "Labeled"}}, 
+      "Options" :> {}, "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{546., {240., 245.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`minx[
+         Pattern[$CellContext`distribution, 
+          Blank[]]] := Switch[$CellContext`distribution, 
+         NormalDistribution[0, 1], -3, 
+         StudentTDistribution[20], -3, 
+         ChiSquareDistribution[6], 0, 
+         FRatioDistribution[4, 10], 0], $CellContext`maxx[
+         Pattern[$CellContext`distribution, 
+          Blank[]]] := Switch[$CellContext`distribution, 
+         NormalDistribution[0, 1], 3, 
+         StudentTDistribution[20], 3, 
+         ChiSquareDistribution[6], 17, 
+         FRatioDistribution[4, 10], 6], 
+       Attributes[Superscript] = {NHoldRest, ReadProtected}, 
+       Attributes[PlotRange] = {ReadProtected}}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->56705898]
+}, {2}]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateCaptionSection"],
+
+Cell[TextData[{
+ "The ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["p", "th"], TraditionalForm]], "InlineMath"],
+ " percentile of a probability distribution is the point ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "p"], TraditionalForm]], "InlineMath"],
+ ", such that the area under the density to the left of ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "p"], TraditionalForm]], "InlineMath"],
+ " is ",
+ Cell[BoxData[
+  FormBox["p", TraditionalForm]], "InlineMath"],
+ ". In this Demonstration, the value of the ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["p", "th"], TraditionalForm]], "InlineMath"],
+ " percentile is marked by the vertical segment. Notice that ",
+ Cell[BoxData[
+  FormBox["p", TraditionalForm]], "InlineMath"],
+ " is both the blue area\[LongDash]the area under the density to the left of \
+",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "p"], TraditionalForm]], "InlineMath"],
+ "\[LongDash]and the ",
+ Cell[BoxData[
+  FormBox["y", TraditionalForm]], "InlineMath"],
+ " value marked by the horizontal red line\[LongDash]the value of the \
+cumulative distribution function (the purple curve) at ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "p"], TraditionalForm]], "InlineMath"],
+ Cell[BoxData[
+  FormBox[".", TraditionalForm]]]
+}], "ManipulateCaption",
+ CellChangeTimes->{
+  3.35696210375764*^9, 3.4017054714560003`*^9, {3.4017180210634565`*^9, 
+   3.4017180828290815`*^9}, {3.401719818683576*^9, 3.4017198193866243`*^9}, {
+   3.4017198551327353`*^9, 3.401719872130885*^9}, {3.402143128671875*^9, 
+   3.4021431289375*^9}, 3.40223187425*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ThumbnailSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`distribution$$ = NormalDistribution[
+    0, 1], $CellContext`p$$ = 0.6, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`distribution$$], 
+       NormalDistribution[0, 1], "distribution"}, {
+      NormalDistribution[0, 1] -> TraditionalForm["N(0,1)"], 
+       ChiSquareDistribution[6] -> 
+       TraditionalForm["\!\(\*SuperscriptBox[\(\[Chi]\), \(2\)]\)(4)"], 
+       StudentTDistribution[20] -> TraditionalForm["T(20)"], 
+       FRatioDistribution[4, 10] -> TraditionalForm["F(4,10)"]}}, {{
+       Hold[$CellContext`p$$], 0.6, "percentile"}, 0.01, 0.99, 0.01}}, 
+    Typeset`size$$ = {500., {185., 190.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`distribution$32121$$ = False, $CellContext`p$32122$$ =
+     0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`distribution$$ = 
+        NormalDistribution[0, 1], $CellContext`p$$ = 0.6}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`distribution$$, $CellContext`distribution$32121$$, 
+         False], 
+        Hold[$CellContext`p$$, $CellContext`p$32122$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Plot[{PDF[$CellContext`distribution$$, $CellContext`x] 
+         If[$CellContext`x <= 
+           Quantile[$CellContext`distribution$$, $CellContext`p$$], 1, 0], 
+         PDF[$CellContext`distribution$$, $CellContext`x], 
+         CDF[$CellContext`distribution$$, $CellContext`x]}, {$CellContext`x, 
+         $CellContext`minx[$CellContext`distribution$$], 
+         $CellContext`maxx[$CellContext`distribution$$]}, 
+        Epilog -> {{Thin, Red, Dashed, 
+           Line[{{
+              Quantile[$CellContext`distribution$$, $CellContext`p$$], 0}, {
+              Quantile[$CellContext`distribution$$, $CellContext`p$$], 
+              CDF[$CellContext`distribution$$, 
+               Quantile[$CellContext`distribution$$, $CellContext`p$$]]}}]}, {
+          Thin, Red, Dashed, 
+           Line[{{0, $CellContext`p$$}, {
+              Quantile[$CellContext`distribution$$, $CellContext`p$$], 
+              CDF[$CellContext`distribution$$, 
+               Quantile[$CellContext`distribution$$, $CellContext`p$$]]}}]}, 
+          Thick, Black, 
+          Opacity[1], 
+          Line[{{
+             Quantile[$CellContext`distribution$$, $CellContext`p$$], 0}, {
+             Quantile[$CellContext`distribution$$, $CellContext`p$$], 
+             PDF[$CellContext`distribution$$, 
+              Quantile[$CellContext`distribution$$, $CellContext`p$$]]}}]}, 
+        Filling -> {1 -> Axis}, ImageSize -> {500, 375}, PlotLabel -> 
+        Row[{"The ", 
+           Superscript[
+            NumberForm[100 $CellContext`p$$, {3, 1}], "th"], 
+           " percentile is ", 
+           NumberForm[
+            Quantile[$CellContext`distribution$$, $CellContext`p$$], {4, 
+            3}]}], PlotStyle -> {Black, Black, Purple}, 
+        PlotRange -> {-0.2, 1}], 
+      "Specifications" :> {{{$CellContext`distribution$$, 
+          NormalDistribution[0, 1], "distribution"}, {
+         NormalDistribution[0, 1] -> TraditionalForm["N(0,1)"], 
+          ChiSquareDistribution[6] -> 
+          TraditionalForm["\!\(\*SuperscriptBox[\(\[Chi]\), \(2\)]\)(4)"], 
+          StudentTDistribution[20] -> TraditionalForm["T(20)"], 
+          FRatioDistribution[4, 10] -> 
+          TraditionalForm["F(4,10)"]}}, {{$CellContext`p$$, 0.6, 
+          "percentile"}, 0.01, 0.99, 0.01, Appearance -> "Labeled"}}, 
+      "Options" :> {}, "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{546., {240., 245.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`minx[
+         Pattern[$CellContext`distribution, 
+          Blank[]]] := Switch[$CellContext`distribution, 
+         NormalDistribution[0, 1], -3, 
+         StudentTDistribution[20], -3, 
+         ChiSquareDistribution[6], 0, 
+         FRatioDistribution[4, 10], 0], $CellContext`maxx[
+         Pattern[$CellContext`distribution, 
+          Blank[]]] := Switch[$CellContext`distribution, 
+         NormalDistribution[0, 1], 3, 
+         StudentTDistribution[20], 3, 
+         ChiSquareDistribution[6], 17, 
+         FRatioDistribution[4, 10], 6], 
+       Attributes[Superscript] = {NHoldRest, ReadProtected}, 
+       Attributes[PlotRange] = {ReadProtected}}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->82002204]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SnapshotsSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`distribution$$ = NormalDistribution[
+    0, 1], $CellContext`p$$ = 0.6, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`distribution$$], 
+       NormalDistribution[0, 1], "distribution"}, {
+      NormalDistribution[0, 1] -> TraditionalForm["N(0,1)"], 
+       ChiSquareDistribution[6] -> 
+       TraditionalForm["\!\(\*SuperscriptBox[\(\[Chi]\), \(2\)]\)(4)"], 
+       StudentTDistribution[20] -> TraditionalForm["T(20)"], 
+       FRatioDistribution[4, 10] -> TraditionalForm["F(4,10)"]}}, {{
+       Hold[$CellContext`p$$], 0.6, "percentile"}, 0.01, 0.99, 0.01}}, 
+    Typeset`size$$ = {500., {185., 190.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`distribution$32177$$ = False, $CellContext`p$32178$$ =
+     0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`distribution$$ = 
+        NormalDistribution[0, 1], $CellContext`p$$ = 0.6}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`distribution$$, $CellContext`distribution$32177$$, 
+         False], 
+        Hold[$CellContext`p$$, $CellContext`p$32178$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Plot[{PDF[$CellContext`distribution$$, $CellContext`x] 
+         If[$CellContext`x <= 
+           Quantile[$CellContext`distribution$$, $CellContext`p$$], 1, 0], 
+         PDF[$CellContext`distribution$$, $CellContext`x], 
+         CDF[$CellContext`distribution$$, $CellContext`x]}, {$CellContext`x, 
+         $CellContext`minx[$CellContext`distribution$$], 
+         $CellContext`maxx[$CellContext`distribution$$]}, 
+        Epilog -> {{Thin, Red, Dashed, 
+           Line[{{
+              Quantile[$CellContext`distribution$$, $CellContext`p$$], 0}, {
+              Quantile[$CellContext`distribution$$, $CellContext`p$$], 
+              CDF[$CellContext`distribution$$, 
+               Quantile[$CellContext`distribution$$, $CellContext`p$$]]}}]}, {
+          Thin, Red, Dashed, 
+           Line[{{0, $CellContext`p$$}, {
+              Quantile[$CellContext`distribution$$, $CellContext`p$$], 
+              CDF[$CellContext`distribution$$, 
+               Quantile[$CellContext`distribution$$, $CellContext`p$$]]}}]}, 
+          Thick, Black, 
+          Opacity[1], 
+          Line[{{
+             Quantile[$CellContext`distribution$$, $CellContext`p$$], 0}, {
+             Quantile[$CellContext`distribution$$, $CellContext`p$$], 
+             PDF[$CellContext`distribution$$, 
+              Quantile[$CellContext`distribution$$, $CellContext`p$$]]}}]}, 
+        Filling -> {1 -> Axis}, ImageSize -> {500, 375}, PlotLabel -> 
+        Row[{"The ", 
+           Superscript[
+            NumberForm[100 $CellContext`p$$, {3, 1}], "th"], 
+           " percentile is ", 
+           NumberForm[
+            Quantile[$CellContext`distribution$$, $CellContext`p$$], {4, 
+            3}]}], PlotStyle -> {Black, Black, Purple}, 
+        PlotRange -> {-0.2, 1}], 
+      "Specifications" :> {{{$CellContext`distribution$$, 
+          NormalDistribution[0, 1], "distribution"}, {
+         NormalDistribution[0, 1] -> TraditionalForm["N(0,1)"], 
+          ChiSquareDistribution[6] -> 
+          TraditionalForm["\!\(\*SuperscriptBox[\(\[Chi]\), \(2\)]\)(4)"], 
+          StudentTDistribution[20] -> TraditionalForm["T(20)"], 
+          FRatioDistribution[4, 10] -> 
+          TraditionalForm["F(4,10)"]}}, {{$CellContext`p$$, 0.6, 
+          "percentile"}, 0.01, 0.99, 0.01, Appearance -> "Labeled"}}, 
+      "Options" :> {}, "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{546., {241., 246.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`minx[
+         Pattern[$CellContext`distribution, 
+          Blank[]]] := Switch[$CellContext`distribution, 
+         NormalDistribution[0, 1], -3, 
+         StudentTDistribution[20], -3, 
+         ChiSquareDistribution[6], 0, 
+         FRatioDistribution[4, 10], 0], $CellContext`maxx[
+         Pattern[$CellContext`distribution, 
+          Blank[]]] := Switch[$CellContext`distribution, 
+         NormalDistribution[0, 1], 3, 
+         StudentTDistribution[20], 3, 
+         ChiSquareDistribution[6], 17, 
+         FRatioDistribution[4, 10], 6], 
+       Attributes[Superscript] = {NHoldRest, ReadProtected}, 
+       Attributes[PlotRange] = {ReadProtected}}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->237888908],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`distribution$$ = ChiSquareDistribution[
+    6], $CellContext`p$$ = 0.6, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`distribution$$], 
+       ChiSquareDistribution[6], "distribution"}, {
+      NormalDistribution[0, 1] -> TraditionalForm["N(0,1)"], 
+       ChiSquareDistribution[6] -> 
+       TraditionalForm["\!\(\*SuperscriptBox[\(\[Chi]\), \(2\)]\)(4)"], 
+       StudentTDistribution[20] -> TraditionalForm["T(20)"], 
+       FRatioDistribution[4, 10] -> TraditionalForm["F(4,10)"]}}, {{
+       Hold[$CellContext`p$$], 0.6, "percentile"}, 0.01, 0.99, 0.01}}, 
+    Typeset`size$$ = {500., {185., 190.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`distribution$32233$$ = False, $CellContext`p$32234$$ =
+     0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`distribution$$ = 
+        ChiSquareDistribution[6], $CellContext`p$$ = 0.6}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`distribution$$, $CellContext`distribution$32233$$, 
+         False], 
+        Hold[$CellContext`p$$, $CellContext`p$32234$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Plot[{PDF[$CellContext`distribution$$, $CellContext`x] 
+         If[$CellContext`x <= 
+           Quantile[$CellContext`distribution$$, $CellContext`p$$], 1, 0], 
+         PDF[$CellContext`distribution$$, $CellContext`x], 
+         CDF[$CellContext`distribution$$, $CellContext`x]}, {$CellContext`x, 
+         $CellContext`minx[$CellContext`distribution$$], 
+         $CellContext`maxx[$CellContext`distribution$$]}, 
+        Epilog -> {{Thin, Red, Dashed, 
+           Line[{{
+              Quantile[$CellContext`distribution$$, $CellContext`p$$], 0}, {
+              Quantile[$CellContext`distribution$$, $CellContext`p$$], 
+              CDF[$CellContext`distribution$$, 
+               Quantile[$CellContext`distribution$$, $CellContext`p$$]]}}]}, {
+          Thin, Red, Dashed, 
+           Line[{{0, $CellContext`p$$}, {
+              Quantile[$CellContext`distribution$$, $CellContext`p$$], 
+              CDF[$CellContext`distribution$$, 
+               Quantile[$CellContext`distribution$$, $CellContext`p$$]]}}]}, 
+          Thick, Black, 
+          Opacity[1], 
+          Line[{{
+             Quantile[$CellContext`distribution$$, $CellContext`p$$], 0}, {
+             Quantile[$CellContext`distribution$$, $CellContext`p$$], 
+             PDF[$CellContext`distribution$$, 
+              Quantile[$CellContext`distribution$$, $CellContext`p$$]]}}]}, 
+        Filling -> {1 -> Axis}, ImageSize -> {500, 375}, PlotLabel -> 
+        Row[{"The ", 
+           Superscript[
+            NumberForm[100 $CellContext`p$$, {3, 1}], "th"], 
+           " percentile is ", 
+           NumberForm[
+            Quantile[$CellContext`distribution$$, $CellContext`p$$], {4, 
+            3}]}], PlotStyle -> {Black, Black, Purple}, 
+        PlotRange -> {-0.2, 1}], 
+      "Specifications" :> {{{$CellContext`distribution$$, 
+          ChiSquareDistribution[6], "distribution"}, {
+         NormalDistribution[0, 1] -> TraditionalForm["N(0,1)"], 
+          ChiSquareDistribution[6] -> 
+          TraditionalForm["\!\(\*SuperscriptBox[\(\[Chi]\), \(2\)]\)(4)"], 
+          StudentTDistribution[20] -> TraditionalForm["T(20)"], 
+          FRatioDistribution[4, 10] -> 
+          TraditionalForm["F(4,10)"]}}, {{$CellContext`p$$, 0.6, 
+          "percentile"}, 0.01, 0.99, 0.01, Appearance -> "Labeled"}}, 
+      "Options" :> {}, "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{546., {240., 245.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`minx[
+         Pattern[$CellContext`distribution, 
+          Blank[]]] := Switch[$CellContext`distribution, 
+         NormalDistribution[0, 1], -3, 
+         StudentTDistribution[20], -3, 
+         ChiSquareDistribution[6], 0, 
+         FRatioDistribution[4, 10], 0], $CellContext`maxx[
+         Pattern[$CellContext`distribution, 
+          Blank[]]] := Switch[$CellContext`distribution, 
+         NormalDistribution[0, 1], 3, 
+         StudentTDistribution[20], 3, 
+         ChiSquareDistribution[6], 17, 
+         FRatioDistribution[4, 10], 6], 
+       Attributes[Superscript] = {NHoldRest, ReadProtected}, 
+       Attributes[PlotRange] = {ReadProtected}}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->83404893],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`distribution$$ = StudentTDistribution[
+    20], $CellContext`p$$ = 0.6, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`distribution$$], 
+       StudentTDistribution[20], "distribution"}, {
+      NormalDistribution[0, 1] -> TraditionalForm["N(0,1)"], 
+       ChiSquareDistribution[6] -> 
+       TraditionalForm["\!\(\*SuperscriptBox[\(\[Chi]\), \(2\)]\)(4)"], 
+       StudentTDistribution[20] -> TraditionalForm["T(20)"], 
+       FRatioDistribution[4, 10] -> TraditionalForm["F(4,10)"]}}, {{
+       Hold[$CellContext`p$$], 0.6, "percentile"}, 0.01, 0.99, 0.01}}, 
+    Typeset`size$$ = {500., {185., 190.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`distribution$32289$$ = False, $CellContext`p$32290$$ =
+     0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`distribution$$ = 
+        StudentTDistribution[20], $CellContext`p$$ = 0.6}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`distribution$$, $CellContext`distribution$32289$$, 
+         False], 
+        Hold[$CellContext`p$$, $CellContext`p$32290$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Plot[{PDF[$CellContext`distribution$$, $CellContext`x] 
+         If[$CellContext`x <= 
+           Quantile[$CellContext`distribution$$, $CellContext`p$$], 1, 0], 
+         PDF[$CellContext`distribution$$, $CellContext`x], 
+         CDF[$CellContext`distribution$$, $CellContext`x]}, {$CellContext`x, 
+         $CellContext`minx[$CellContext`distribution$$], 
+         $CellContext`maxx[$CellContext`distribution$$]}, 
+        Epilog -> {{Thin, Red, Dashed, 
+           Line[{{
+              Quantile[$CellContext`distribution$$, $CellContext`p$$], 0}, {
+              Quantile[$CellContext`distribution$$, $CellContext`p$$], 
+              CDF[$CellContext`distribution$$, 
+               Quantile[$CellContext`distribution$$, $CellContext`p$$]]}}]}, {
+          Thin, Red, Dashed, 
+           Line[{{0, $CellContext`p$$}, {
+              Quantile[$CellContext`distribution$$, $CellContext`p$$], 
+              CDF[$CellContext`distribution$$, 
+               Quantile[$CellContext`distribution$$, $CellContext`p$$]]}}]}, 
+          Thick, Black, 
+          Opacity[1], 
+          Line[{{
+             Quantile[$CellContext`distribution$$, $CellContext`p$$], 0}, {
+             Quantile[$CellContext`distribution$$, $CellContext`p$$], 
+             PDF[$CellContext`distribution$$, 
+              Quantile[$CellContext`distribution$$, $CellContext`p$$]]}}]}, 
+        Filling -> {1 -> Axis}, ImageSize -> {500, 375}, PlotLabel -> 
+        Row[{"The ", 
+           Superscript[
+            NumberForm[100 $CellContext`p$$, {3, 1}], "th"], 
+           " percentile is ", 
+           NumberForm[
+            Quantile[$CellContext`distribution$$, $CellContext`p$$], {4, 
+            3}]}], PlotStyle -> {Black, Black, Purple}, 
+        PlotRange -> {-0.2, 1}], 
+      "Specifications" :> {{{$CellContext`distribution$$, 
+          StudentTDistribution[20], "distribution"}, {
+         NormalDistribution[0, 1] -> TraditionalForm["N(0,1)"], 
+          ChiSquareDistribution[6] -> 
+          TraditionalForm["\!\(\*SuperscriptBox[\(\[Chi]\), \(2\)]\)(4)"], 
+          StudentTDistribution[20] -> TraditionalForm["T(20)"], 
+          FRatioDistribution[4, 10] -> 
+          TraditionalForm["F(4,10)"]}}, {{$CellContext`p$$, 0.6, 
+          "percentile"}, 0.01, 0.99, 0.01, Appearance -> "Labeled"}}, 
+      "Options" :> {}, "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{546., {240., 245.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`minx[
+         Pattern[$CellContext`distribution, 
+          Blank[]]] := Switch[$CellContext`distribution, 
+         NormalDistribution[0, 1], -3, 
+         StudentTDistribution[20], -3, 
+         ChiSquareDistribution[6], 0, 
+         FRatioDistribution[4, 10], 0], $CellContext`maxx[
+         Pattern[$CellContext`distribution, 
+          Blank[]]] := Switch[$CellContext`distribution, 
+         NormalDistribution[0, 1], 3, 
+         StudentTDistribution[20], 3, 
+         ChiSquareDistribution[6], 17, 
+         FRatioDistribution[4, 10], 6], 
+       Attributes[Superscript] = {NHoldRest, ReadProtected}, 
+       Attributes[PlotRange] = {ReadProtected}}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->386476790]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "DetailsSection"],
+
+Cell[TextData[{
+ "In ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ ", the ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["p", "th"], TraditionalForm]], "InlineMath"],
+ " percentile of the probability distribution ",
+ StyleBox["dist", "MR"],
+ " is obtained by ",
+ StyleBox["Quantile[dist, p]", "MR"],
+ "."
+}], "DetailNotes",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4017188691103315`*^9, 3.4017188701259565`*^9}},
+ CellID->56741802]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ControlSuggestionsSection",
+ CellID->569101207],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Resize Images"]}],
+  "\"Click inside an image to reveal its orange resize frame.\\nDrag any of \
+the orange resize handles to resize the image.\"",
+  ActionDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.35696210375764*^9, 3.4017181314384565`*^9},
+ FontFamily->"Verdana",
+ CellTags->"ResizeImages",
+ CellID->70364341],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Rotate and Zoom in 3D"]}],
+  RowBox[{
+   "\"Drag a 3D graphic to rotate it. Starting the drag near the center \
+tumbles\\nthe graphic; starting near a corner turns it parallel to the plane \
+of the screen.\\nHold down \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" (or \"", 
+    FrameBox[
+    "Cmd", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" on Mac) and drag up and down to zoom.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"RotateAndZoomIn3D",
+ CellID->17490715],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Drag Locators"]}],
+  RowBox[{"\"Drag any locator (\"", 
+    GraphicsBox[
+     LocatorBox[
+      Scaled[{0.5, 0.5}]], ImageSize -> 20], 
+    "\", etc.) to move it around.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"DragLocators",
+ CellID->57344581],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Create and Delete Locators"]}],
+  RowBox[{"\"Insert a new locator in the graphic by holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key\\nand clicking where you want it to be. Delete a locator by \
+clicking it\\nwhile holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" key.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"CreateAndDeleteLocators",
+ CellID->32987377],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Slider Zoom"]}],
+  RowBox[{"\"Hold down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key while moving a slider to make fine adjustments in the slider \
+value.\\nHold \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" and/or \"", 
+    FrameBox[
+    "Shift", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" at the same time as \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" to make ever finer adjustments.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"SliderZoom",
+ CellID->866354033],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Gamepad Controls"]}],
+  "\"Control this Demonstration with a gamepad or other\\nhuman interface \
+device connected to your computer.\"",
+  ActionDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.35696210375764*^9, 3.3895522232313623`*^9},
+ FontFamily->"Verdana",
+ CellTags->"GamepadControls",
+ CellID->205400965],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Automatic Animation"]}],
+  RowBox[{"\"Animate a slider in this Demonstration by clicking the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJzzTSzJSM1NLMlMTlRwL0osyMhMLlZwyy8CCjEzMjAwcIKwAgOI/R/IhBKc\n\
+/4EAyGAG0f+nTZsGwgysIJIRKsWKLAXGIHFmEpUgLADxWUAkI24jZs+eTaEt\n\
+IG+wQKRmzJgBlYf5lhEA30OqWA=="], "Graphics", ImageSize -> {9, 9}, ImageMargins -> 
+      0], BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"button\\nnext to the slider, and then clicking the play button that \
+appears.\\nAnimate all controls by selecting \"", 
+    StyleBox["Autorun", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0], BoxBaselineShift -> 
+     0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"AutomaticAnimation",
+ CellID->291762735],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Bookmark Animation"]}],
+  RowBox[{
+   "\"See a prepared animation of this Demonstration by selecting\\n\"", 
+    StyleBox["Animate Bookmarks", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0], BoxBaselineShift -> 
+     0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"BookmarkAnimation",
+ CellID->580660823]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SearchTermsSection"],
+
+Cell["probability", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4017055912679996`*^9, 3.4017055931540003`*^9}, {
+   3.40171045779*^9, 3.401710457793*^9}},
+ CellID->340609795],
+
+Cell["percentile", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.40171045826*^9, 3.401710459594*^9}},
+ CellID->400493003],
+
+Cell["quantile", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4017055946800003`*^9, 3.4017055957320004`*^9}},
+ CellID->774201320],
+
+Cell["median", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.401705595986*^9, 3.4017055968269997`*^9}},
+ CellID->366866433],
+
+Cell["quartile", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.401705597005*^9, 3.40170559834*^9}},
+ CellID->328317295]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "RelatedLinksSection"],
+
+Cell[TextData[ButtonBox["Quantile",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/Quantile.html"], None}]], "RelatedLinks",\
+
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.401705603119*^9, 3.401705620801*^9}},
+ CellID->147255071],
+
+Cell[TextData[ButtonBox["Percentile",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://mathworld.wolfram.com/Percentile.html"], 
+   None}]], "RelatedLinks",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4017056050360003`*^9, 3.4017056063570004`*^9}, {
+   3.401705641079*^9, 3.4017056410810003`*^9}},
+ CellID->11390077]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "AuthorSection"],
+
+Cell[TextData[{
+ "Contributed by: ",
+ ButtonBox["Chris Boucher",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Chris+Boucher"],
+     None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/author.html?author=Chris+Boucher"]
+}], "Author",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.390925304413118*^9, 3.39092530713339*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{778, 862},
+WindowMargins->{{53, Automatic}, {Automatic, 8}},
+FrontEndVersion->"6.0 for Microsoft Windows (32-bit) (April 20, 2007)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "Demonstration.nb", 
+  CharacterEncoding -> "WindowsANSI"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "ResizeImages"->{
+  Cell[36511, 839, 394, 10, 22, "ControlSuggestions",
+   CellTags->"ResizeImages",
+   CellID->70364341]},
+ "RotateAndZoomIn3D"->{
+  Cell[36908, 851, 696, 17, 22, "ControlSuggestions",
+   CellTags->"RotateAndZoomIn3D",
+   CellID->17490715]},
+ "DragLocators"->{
+  Cell[37607, 870, 358, 12, 22, "ControlSuggestions",
+   CellTags->"DragLocators",
+   CellID->57344581]},
+ "CreateAndDeleteLocators"->{
+  Cell[37968, 884, 655, 16, 22, "ControlSuggestions",
+   CellTags->"CreateAndDeleteLocators",
+   CellID->32987377]},
+ "SliderZoom"->{
+  Cell[38626, 902, 863, 22, 22, "ControlSuggestions",
+   CellTags->"SliderZoom",
+   CellID->866354033]},
+ "GamepadControls"->{
+  Cell[39492, 926, 388, 10, 22, "ControlSuggestions",
+   CellTags->"GamepadControls",
+   CellID->205400965]},
+ "AutomaticAnimation"->{
+  Cell[39883, 938, 1431, 32, 22, "ControlSuggestions",
+   CellTags->"AutomaticAnimation",
+   CellID->291762735]},
+ "BookmarkAnimation"->{
+  Cell[41317, 972, 901, 22, 22, "ControlSuggestions",
+   CellTags->"BookmarkAnimation",
+   CellID->580660823]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"ResizeImages", 44555, 1082},
+ {"RotateAndZoomIn3D", 44685, 1086},
+ {"DragLocators", 44815, 1090},
+ {"CreateAndDeleteLocators", 44951, 1094},
+ {"SliderZoom", 45085, 1098},
+ {"GamepadControls", 45212, 1102},
+ {"AutomaticAnimation", 45347, 1106},
+ {"BookmarkAnimation", 45485, 1110}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[590, 23, 181, 3, 74, "DemoTitle"],
+Cell[CellGroupData[{
+Cell[796, 30, 33, 0, 156, "InitializationSection"],
+Cell[832, 32, 1196, 28, 70, "Input",
+ CellID->163401273]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[2065, 65, 29, 0, 188, "ManipulateSection"],
+Cell[CellGroupData[{
+Cell[2119, 69, 6248, 158, 522, "Input"],
+Cell[8370, 229, 5145, 102, 497, "Output",
+ CellID->56705898]
+}, {2}]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13561, 337, 36, 0, 136, "ManipulateCaptionSection"],
+Cell[13600, 339, 1581, 43, 98, "ManipulateCaption"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15218, 387, 28, 0, 168, "ThumbnailSection"],
+Cell[15249, 389, 5145, 102, 497, "Output",
+ CellID->82002204]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20431, 496, 28, 0, 138, "SnapshotsSection"],
+Cell[20462, 498, 5146, 102, 499, "Output",
+ CellID->237888908],
+Cell[25611, 602, 5145, 102, 497, "Output",
+ CellID->83404893],
+Cell[30759, 706, 5146, 102, 497, "Output",
+ CellID->386476790]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[35942, 813, 26, 0, 232, "DetailsSection"],
+Cell[35971, 815, 443, 16, 23, "DetailNotes",
+ CellID->56741802]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[36451, 836, 57, 1, 120, "ControlSuggestionsSection",
+ CellID->569101207],
+Cell[36511, 839, 394, 10, 22, "ControlSuggestions",
+ CellTags->"ResizeImages",
+ CellID->70364341],
+Cell[36908, 851, 696, 17, 22, "ControlSuggestions",
+ CellTags->"RotateAndZoomIn3D",
+ CellID->17490715],
+Cell[37607, 870, 358, 12, 22, "ControlSuggestions",
+ CellTags->"DragLocators",
+ CellID->57344581],
+Cell[37968, 884, 655, 16, 22, "ControlSuggestions",
+ CellTags->"CreateAndDeleteLocators",
+ CellID->32987377],
+Cell[38626, 902, 863, 22, 22, "ControlSuggestions",
+ CellTags->"SliderZoom",
+ CellID->866354033],
+Cell[39492, 926, 388, 10, 22, "ControlSuggestions",
+ CellTags->"GamepadControls",
+ CellID->205400965],
+Cell[39883, 938, 1431, 32, 22, "ControlSuggestions",
+ CellTags->"AutomaticAnimation",
+ CellID->291762735],
+Cell[41317, 972, 901, 22, 22, "ControlSuggestions",
+ CellTags->"BookmarkAnimation",
+ CellID->580660823]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[42255, 999, 30, 0, 152, "SearchTermsSection"],
+Cell[42288, 1001, 191, 4, 22, "SearchTerms",
+ CellID->340609795],
+Cell[42482, 1007, 136, 3, 22, "SearchTerms",
+ CellID->400493003],
+Cell[42621, 1012, 145, 3, 22, "SearchTerms",
+ CellID->774201320],
+Cell[42769, 1017, 138, 3, 22, "SearchTerms",
+ CellID->366866433],
+Cell[42910, 1022, 134, 3, 22, "SearchTerms",
+ CellID->328317295]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[43081, 1030, 31, 0, 138, "RelatedLinksSection"],
+Cell[43115, 1032, 260, 7, 22, "RelatedLinks",
+ CellID->147255071],
+Cell[43378, 1041, 324, 8, 22, "RelatedLinks",
+ CellID->11390077]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[43739, 1054, 25, 0, 136, "AuthorSection"],
+Cell[43767, 1056, 388, 11, 22, "Author"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
